@@ -1,0 +1,158 @@
+1) To obtain data on san francisco bikeshare stations and to list the data in decs order of capacity and asc order of sation id 
+ select * from `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_info`
+ORDER BY station_id ASC, capacity DESC
+LIMIT 10
+
+station_id	name	short_name	lat	lon	region_id	rental_methods	capacity	external_id	eightd_has_key_dispenser	has_kiosk	station_geom
+3	Powell St BART Station (Market St at 4th St)	SF-G27	37.78637526861584	-122.40490436553954	3	"CREDITCARD,KEY"	35	1b13a386-c5f4-42cc-bc3b-ded95982e090	false	true	POINT(-122.40490436554 37.7863752686158)
+4	Cyril Magnin St at Ellis St	SF-G26	37.78588062694133	-122.4089150084319	3	"CREDITCARD,KEY"	35	a00d04e6-0159-466a-b3ab-23f9550f418c	false	true	POINT(-122.408915008432 37.7858806269413)
+5	Powell St BART Station (Market St at 5th St)	SF-H26	37.783899357084934	-122.40844488143921	3	"CREDITCARD,KEY"	34	a1e0b4b2-2c5c-4201-a78c-9e8a2152ab4e	false	true	POINT(-122.408444881439 37.7838993570849)
+6	The Embarcadero at Sansome St	SF-A27	37.80477	-122.403234	3	"CREDITCARD,KEY"	23	23a2bad4-3ea1-4545-87eb-acbee3efccfc	false	true	POINT(-122.403234 37.80477)
+7	Frank H Ogawa Plaza	OK-L5	37.8045623549303	-122.27173805236816	12	"CREDITCARD,KEY"	35	9e3efff1-3d42-46fd-8206-4021277ba6c2	false	true	POINT(-122.271738052368 37.8045623549303)
+8	The Embarcadero at Vallejo St	SF-C28-1	37.799953	-122.398525	3	"CREDITCARD,KEY"	23	7c7ac914-40e5-426d-b9c4-f12b1a556be8	false	true	POINT(-122.398525 37.799953)
+9	Broadway at Battery St	SF-C28-2	37.79857210846256	-122.40086898207666	3	"CREDITCARD,KEY"	19	75f6691a-df0a-4d7a-8b35-e5ffe33add4f	false	true	POINT(-122.400868982077 37.7985721084626)
+10	Washington St at Kearny St	SF-D27	37.79539293725452	-122.4047702550888	3	"CREDITCARD,KEY"	31	e5b0aca4-2ce6-49f8-82e8-8eed6e004147	false	true	POINT(-122.404770255089 37.7953929372545)
+11	Davis St at Jackson St	SF-D28	37.79728	-122.398436	3	"CREDITCARD,KEY"	35	faad71bc-21e3-4ce1-8b84-63f782a91d1b	false	true	POINT(-122.398436 37.79728)
+12	Pier 1/2 at The Embarcadero	SF-D29	37.7963894	-122.3945855	3	"CREDITCARD,KEY"	23	4fc98cbd-9c9b-401b-95a6-927e30bdbd46	false	true	POINT(-122.3945855 37.7963894)
+
+2) how many people are subs to the san frans bikeshare trips?
+ select * from `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+WHERE subscriber_type = 'Subscriber'
+LIMIT 10
+
+trip_id	duration_sec	start_date	start_station_name	start_station_id	end_date	end_station_name	end_station_id	bike_number	zip_code	subscriber_type	c_subscription_type	start_station_latitude	start_station_longitude	end_station_latitude	end_station_longitude	member_birth_year	member_gender	bike_share_for_all_trip	start_station_geom	end_station_geom
+1420140828124900	593	2014-08-28 12:49:00 UTC	Castro Street and El Camino Real	32	2014-08-28 12:59:00 UTC	Castro Street and El Camino Real	32	14	94109	Subscriber										
+14620140827083700	282	2014-08-27 08:37:00 UTC	San Antonio Caltrain Station	29	2014-08-27 08:41:00 UTC	San Antonio Shopping Center	31	146	94070	Subscriber										
+22120140827074000	344	2014-08-27 07:40:00 UTC	Santa Clara at Almaden	4	2014-08-27 07:46:00 UTC	SJSU 4th at San Carlos	12	221	95110	Subscriber										
+26220140825173800	338	2014-08-25 17:38:00 UTC	Castro Street and El Camino Real	32	2014-08-25 17:43:00 UTC	Mountain View Caltrain Station	28	262	94107	Subscriber										
+3220140821185500	1020	2014-08-21 18:55:00 UTC	Arena Green / SAP Center	14	2014-08-21 19:12:00 UTC	Santa Clara County Civic Center	80	32	95018	Subscriber										
+22120140819085200	454	2014-08-19 08:52:00 UTC	Santa Clara at Almaden	4	2014-08-19 08:59:00 UTC	SJSU 4th at San Carlos	12	221	95110	Subscriber										
+19020140819072000	278	2014-08-19 07:20:00 UTC	Rengstorff Avenue / California Street	33	2014-08-19 07:25:00 UTC	San Antonio Caltrain Station	29	190	94040	Subscriber										
+25320140815185900	1340	2014-08-15 18:59:00 UTC	Santa Clara County Civic Center	80	2014-08-15 19:22:00 UTC	Arena Green / SAP Center	14	253	95051	Subscriber										
+63820140815171600	790	2014-08-15 17:16:00 UTC	Park at Olive	38	2014-08-15 17:29:00 UTC	University and Emerson	35	638	94301	Subscriber										
+2520140813200100	480	2014-08-13 20:01:00 UTC	St James Park	13	2014-08-13 20:09:00 UTC	SJSU - San Salvador at 9th	16	25	95112	Subscriber
+
+3) how many san fran trees are between 10 and 50 in size of the site order?
+ select * from `bigquery-public-data.san_francisco_trees.street_trees`
+WHERE site_order BETWEEN 10 AND 50
+LIMIT 10
+
+tree_id	legal_status	species	address	site_order	site_info	plant_type	care_taker	care_assistant	plant_date	dbh	plot_size	permit_notes	x_coordinate	y_coordinate	latitude	longitude	location
+48236	Permitted Site	Tree(s) ::		20	Sidewalk: Curb side : Cutout	Tree	Private		2002-07-17 00:00:00 UTC			Permit Number 45761					
+35207	Permitted Site	Metrosideros excelsa :: New Zealand Xmas Tree		14	Sidewalk: Curb side : Cutout	Tree	Private		1998-02-10 00:00:00 UTC			Permit Number 38712					
+44867	Permitted Site	Tree(s) ::		26	Sidewalk: Curb side : Cutout	Tree	Private		2001-04-25 00:00:00 UTC			Permit Number 43922					
+46289	Permitted Site	Robinia x ambigua :: Locust		14	Sidewalk: Curb side : Cutout	Tree	Private		2002-01-31 00:00:00 UTC			Permit Number 44564					
+48217	Permitted Site	Tree(s) ::		29	Sidewalk: Curb side : Cutout	Tree	Private		2002-07-17 00:00:00 UTC			Permit Number 45761					
+44862	Permitted Site	Tree(s) ::		34	Sidewalk: Curb side : Cutout	Tree	Private		2001-04-25 00:00:00 UTC			Permit Number 43922					
+44544	Permitted Site	Tree(s) ::		25	Sidewalk: Curb side : Cutout	Tree	Private		2001-04-29 00:00:00 UTC			Permit Number 43835					
+44663	Permitted Site	Tree(s) ::		45	Sidewalk: Curb side : Cutout	Tree	Private		2001-04-29 00:00:00 UTC			Permit Number 43835					
+35689	Permitted Site	Platanus x hispanica :: Sycamore: London Plane		12	Sidewalk: Curb side : Cutout	Tree	Private		1998-04-10 00:00:00 UTC			Permit Number 38993					
+48215	Permitted Site	Tree(s) ::		33	Sidewalk: Curb side : Cutout	Tree	Private		2002-07-17 00:00:00 UTC			Permit Number 45761					
+										
+4) to obtain data on san fran bikeshare trips whose start station name starts with P
+select * from `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+where start_station_name LIKE 'P%'
+LIMIT 10
+
+trip_id	duration_sec	start_date	start_station_name	start_station_id	end_date	end_station_name	end_station_id	bike_number	zip_code	subscriber_type	c_subscription_type	start_station_latitude	start_station_longitude	end_station_latitude	end_station_longitude	member_birth_year	member_gender	bike_share_for_all_trip	start_station_geom	end_station_geom
+63820140815171600	790	2014-08-15 17:16:00 UTC	Park at Olive	38	2014-08-15 17:29:00 UTC	University and Emerson	35	638	94301	Subscriber										
+71420140811075000	949	2014-08-11 07:50:00 UTC	Palo Alto Caltrain Station	34	2014-08-11 08:06:00 UTC	Park at Olive	38	714	94306	Subscriber										
+20820140804224200	1069	2014-08-04 22:42:00 UTC	Palo Alto Caltrain Station	34	2014-08-04 23:00:00 UTC	California Ave Caltrain Station	36	208	94040-1724	Subscriber										
+3620140803123900	14829	2014-08-03 12:39:00 UTC	Palo Alto Caltrain Station	34	2014-08-03 16:46:00 UTC	Palo Alto Caltrain Station	34	36	1	Customer										
+6020140727201200	3535	2014-07-27 20:12:00 UTC	Palo Alto Caltrain Station	34	2014-07-27 21:11:00 UTC	University and Emerson	35	60	94304	Customer										
+7420140721191400	276	2014-07-21 19:14:00 UTC	Park at Olive	38	2014-07-21 19:19:00 UTC	California Ave Caltrain Station	36	74	94041	Subscriber										
+30720140717153500	258	2014-07-17 15:35:00 UTC	Palo Alto Caltrain Station	34	2014-07-17 15:39:00 UTC	Cowper at University	37	307	94105	Subscriber										
+6820140703093700	235	2014-07-03 09:37:00 UTC	Palo Alto Caltrain Station	34	2014-07-03 09:41:00 UTC	Cowper at University	37	68	94133	Subscriber										
+1420140630082600	457	2014-06-30 08:26:00 UTC	Palo Alto Caltrain Station	34	2014-06-30 08:33:00 UTC	Cowper at University	37	14	95128	Subscriber										
+68820140626184500	828	2014-06-26 18:45:00 UTC	Paseo de San Antonio	7	2014-06-26 18:58:00 UTC	Japantown	9	688	95112	Customer										
+
+5) how many subs to the san frans bike share trips start in Japantown?
+ select * from `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+where subscriber_type='Subscriber' AND start_station_name='Japantown'
+LIMIT 10
+
+trip_id	duration_sec	start_date	start_station_name	start_station_id	end_date	end_station_name	end_station_id	bike_number	zip_code	subscriber_type	c_subscription_type	start_station_latitude	start_station_longitude	end_station_latitude	end_station_longitude	member_birth_year	member_gender	bike_share_for_all_trip	start_station_geom	end_station_geom
+22120140720115100	402	2014-07-20 11:51:00 UTC	Japantown	9	2014-07-20 11:57:00 UTC	Ryland Park	84	221	95110	Subscriber										
+9920140717153800	582	2014-07-17 15:38:00 UTC	Japantown	9	2014-07-17 15:47:00 UTC	San Salvador at 1st	8	99	95112	Subscriber										
+71320140608103200	237	2014-06-08 10:32:00 UTC	Japantown	9	2014-06-08 10:36:00 UTC	Ryland Park	84	713	95110	Subscriber										
+5320140322015100	773	2014-03-22 01:51:00 UTC	Japantown	9	2014-03-22 02:04:00 UTC	San Jose City Hall	10	53	95113	Subscriber										
+19920140312133600	564	2014-03-12 13:36:00 UTC	Japantown	9	2014-03-12 13:45:00 UTC	San Pedro Square	6	199	94602	Subscriber										
+68420130829135300	163	2013-08-29 13:53:00 UTC	Japantown	9	2013-08-29 13:56:00 UTC	Japantown	9	684	95112	Subscriber	Subscriber									
+9920131013184300	525	2013-10-13 18:43:00 UTC	Japantown	9	2013-10-13 18:52:00 UTC	MLK Library	11	99	95112	Subscriber	Subscriber									
+18620140119150100	396	2014-01-19 15:01:00 UTC	Japantown	9	2014-01-19 15:08:00 UTC	San Pedro Square	6	186	95112	Subscriber	Subscriber									
+5920140128164100	607	2014-01-28 16:41:00 UTC	Japantown	9	2014-01-28 16:51:00 UTC	Santa Clara at Almaden	4	59	95112	Subscriber	Subscriber									
+15620150909095700	364	2015-09-09 09:57:00 UTC	Japantown	9	2015-09-09 10:03:00 UTC	Santa Clara County Civic Center	80	156	94306	Subscriber										
+
+6) What is the average birth year of the memebrs of the San Francisco bikeshre trips? 
+select AVG(member_birth_year)
+from `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+
+f0_
+1981.0047816282065
+
+7) What is the minimum duration underaken by the members of the San Francisco bikeshare trips? 
+select MIN(duration_sec) AS MinimumDuration
+from `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+
+MinimumDuration
+60
+
+8) to obtain the trip id with duration_sec = 10
+select column1.trip_id, column2.duration_sec
+from `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips` AS column1
+JOIN `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips` AS column2
+ON (column1.trip_id=column2.trip_id)
+order by duration_sec ASC
+limit 10
+
+trip_id	duration_sec
+37220140714140900	60
+63120160417173800	60
+27020160308161300	60
+36820131014144700	60
+15520140725173000	60
+3520151116185400	60
+70620160527074700	60
+40720140623173100	60
+23920130903083700	60
+53220150221124500	60
+
+
+9) What is the name of the station and Number of bikes available?
+select fertility1.name, fertility2.num_bikes_available 
+from `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_info` AS fertility1
+JOIN `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_status` AS fertility2
+ON (fertility1.station_id = fertility2.station_id)
+order by num_bikes_available DESC
+limit 10
+
+name	num_bikes_available
+Terry Francois Blvd at Warriors Way	33
+Powell St BART Station (Market St at 5th St)	30
+San Francisco Ferry Building (Harry Bridges Plaza)	30
+7th St at Empire St	26
+10th St at Fallon St	26
+Webster St at 2nd St	26
+Bay St at Fillmore St	26
+Mississippi St at 17th St	26
+Funston Ave at Irving St	26
+Civic Center/UN Plaza BART Station (Market St at McAllister St)	24
+
+10) What is the region ID and Name of the Station?
+select SAM1.region_id, SAM2.name
+from `bigquery-public-data.san_francisco_bikeshare.bikeshare_regions` AS SAM1
+INNER JOIN `bigquery-public-data.san_francisco_bikeshare.bikeshare_station_info` AS SAM2 
+ON (SAM1.region_id=SAM2.region_id)
+limit 10
+
+region_id	name
+3	San Francisco Ferry Building (Harry Bridges Plaza)
+3	The Embarcadero at Pier 38
+3	24th St at Bartlett St
+3	Glen Park BART Station
+3	Terry Francois Blvd at Warriors Way
+3	San Francisco Caltrain Station (King St at 4th St)
+3	5th St at Brannan St
+3	Washington St at Van Ness Ave
+3	16th St Mission BART
+3	Victoria Manalo Draves Park
